@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+</head>
+<body>
+    <div style="max-width: 420px;" class="container mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Student List</h1>
+        <a href="{% url 'students:add' %}" class="bg-blue-500 text-white p-2 rounded-lg">Add Student</a>
+        <table class="w-full mt-4">
+            <thead>
+                <tr class="text-left font-bold">
+                    <th class="py-2">First Name</th>
+                    <th class="py-2">Last Name</th>
+                    <th class="py-2">Age</th>
+                    <th class="py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr class="text-left">
+                    <td class="py-2">{{ student.first_name }}</td>
+                    <td class="py-2">{{ student.last_name }}</td>
+                    <td class="py-2">{{ student.age }}</td>
+                    <td class="py-2">
+                        <a href="{% url 'students:edit' student.id %}" class="bg-blue-500 text-white p-2 rounded-lg mr-2">Edit</a>
+                        <a href="{% url 'students:delete' student.id %}" class="bg-red-500 text-white p-2 rounded-lg">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
